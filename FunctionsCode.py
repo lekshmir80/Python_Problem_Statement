@@ -8,6 +8,10 @@ dict_id = {}
 dict_distress = {}
 dict_fall = {}
 dict_unautority = {}
+distress_each = {}
+fall_each = {}
+unauth_each ={}
+proactive_each = {}
 alert_dic_total = {}
 dict_pro = {}
 
@@ -44,10 +48,10 @@ for i in dict_id.keys():
                 countu = countu + 1
             elif data1[1][ind] == "PROACTIVE_OBSERVATION":
                 countp = countp + 1
-    dict_distress[i] = countd
-    dict_fall[i] = countf
-    dict_unautority[i] = countu
-    dict_pro[i] = countp
+    distress_each[i] = dict_distress[i] = countd
+    fall_each[i] = dict_fall[i] = countf
+    unauth_each[i] = dict_unautority[i] = countu
+    proactive_each[i] = dict_pro[i] = countp
 
 
 # 3. Calculate % of alerts created by each emp against total alerts for all emp
@@ -70,17 +74,17 @@ def emp_total_alerts_all_emp():
 # 4. Calculate % of alerts created by each emp against total alerts by each emp
 def emp_total_alerts_each_emp():
     for i in dict_id.keys():
-        dict_distress[i] = f"{dict_distress[i] / dict_id[i] * 100}%"
-        dict_fall[i] = f"{dict_fall[i] / dict_id[i] * 100}%"
-        dict_unautority[i] = f"{dict_unautority[i] / dict_id[i] * 100}%"
-        dict_pro[i] = f"{dict_pro[i] / dict_id[i] * 100}%"
+        distress_each[i] = f"{distress_each[i] / dict_id[i] * 100}%"
+        fall_each[i] = f"{fall_each[i] / dict_id[i] * 100}%"
+        unauth_each[i] = f"{unauth_each[i] / dict_id[i] * 100}%"
+        proactive_each[i] = f"{proactive_each[i] / dict_id[i] * 100}%"
     print("---------------------Table 2-----------------------------")
     print("{:<20} {:<20} {:<20} {:<20} {:<20} {:<20}".format("EmpID", "DISTRESS", "FALL", "UNAUTHORIZED_ENTRY",
                                                              "PROACTIVE",
                                                              "%alertsToTotal"))
     for key in dict_id.keys():
-        EmpID, DISTRESS, FALL, UNAUTHORIZED_ENTRY, Proactive, alertsToTotal = key, dict_distress[key], dict_fall[key], \
-                                                                              dict_unautority[key], dict_pro[key], \
+        EmpID, DISTRESS, FALL, UNAUTHORIZED_ENTRY, Proactive, alertsToTotal = key, distress_each[key], fall_each[key], \
+                                                                              unauth_each[key], proactive_each[key], \
                                                                               dict_id[key]
         print("{:<20} {:<20} {:<20} {:<20} {:<20} {:<20}".format(EmpID, DISTRESS, FALL, UNAUTHORIZED_ENTRY, Proactive,
                                                                  alertsToTotal))
