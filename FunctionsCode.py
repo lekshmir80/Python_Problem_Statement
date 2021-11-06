@@ -50,8 +50,8 @@ for i in dict_id.keys():
     dict_pro[i] = countp
 
 
+# 3. Calculate % of alerts created by each emp against total alerts for all emp
 def emp_total_alerts_all_emp():
-
     for key in dict_id.keys():
         alert_dic_total[key] = f"{(dict_id[key] / 12890) * 100}%"
     # Table
@@ -60,11 +60,14 @@ def emp_total_alerts_all_emp():
                                                              "PROACTIVE",
                                                              "%alertsToTotal"))
     for key in dict_id.keys():
-        EmpID, DISTRESS, FALL, UNAUTHORIZED_ENTRY, Proactive, alertsToTotal = key, dict_distress[key], dict_fall[key], dict_unautority[key], dict_pro[key], alert_dic_total[key]
+        EmpID, DISTRESS, FALL, UNAUTHORIZED_ENTRY, Proactive, alertsToTotal = key, dict_distress[key], dict_fall[key], \
+                                                                              dict_unautority[key], dict_pro[key], \
+                                                                              alert_dic_total[key]
         print("{:<20} {:<20} {:<20} {:<20} {:<20} {:<20}".format(EmpID, DISTRESS, FALL, UNAUTHORIZED_ENTRY, Proactive,
                                                                  alertsToTotal))
 
 
+# 4. Calculate % of alerts created by each emp against total alerts by each emp
 def emp_total_alerts_each_emp():
     for i in dict_id.keys():
         dict_distress[i] = f"{dict_distress[i] / dict_id[i] * 100}%"
